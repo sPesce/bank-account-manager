@@ -1,0 +1,6 @@
+<%= form_for @online_banking_account do |f| %>
+  <%= f.collection_select(:bank_id, Bank.all, :id, :name)%>
+  <%= f.label :username, "Username" %>
+  <%= f.text_field :username %>
+  <%= f.submit "Add Bank"%>
+<% end %>

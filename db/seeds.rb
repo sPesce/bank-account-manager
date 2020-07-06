@@ -13,7 +13,7 @@ DepositAccount.destroy_all
 Loan.destroy_all 
 
 bank_name = ['TD Bank', 'Chase Bank', 'PNC Bank' ]
-bank_address = ['td.com', 'chase.com', 'pnc.com']
+bank_address = ['https://www.td.com/', 'https://www.chase.com/', 'https://www.pnc.com/']
 
 [0,1,2].each do |i|
     Bank.create(name: bank_name[i], web_address: bank_address[i])

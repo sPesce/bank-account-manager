@@ -1,0 +1,22 @@
+<%= link_to "Add Banking Account", new_online_banking_account_path %>
+<h1>Connected Online Bank Accounts: </h1>
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<table>
+  <% @user.online_banking_accounts.each do |oba| %>
+    <tr>
+      <td><%= link_to oba.bank.name, oba.bank.web_address %></td>
+      <td> | savings</td>
+      <td> | checking</td>
+      <td> | loan</td>
+      <td> | <%=link_to %></td>
+    </tr>
+  <% end %>
+</ul>
+
