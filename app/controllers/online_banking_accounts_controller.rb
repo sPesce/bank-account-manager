@@ -1,0 +1,2 @@
+class OnlineBankingAccountsController < ApplicationController
+end

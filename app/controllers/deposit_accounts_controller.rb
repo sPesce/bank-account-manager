@@ -1,0 +1,2 @@
+class DepositAccountsController < ApplicationController
+end
