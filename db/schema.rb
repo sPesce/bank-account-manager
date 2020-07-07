@@ -10,34 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_184826) do
+ActiveRecord::Schema.define(version: 2020_07_07_181444) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
     t.string "web_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "routing_number"
   end
 
   create_table "deposit_accounts", force: :cascade do |t|
     t.integer "online_banking_account_id"
-    t.string "type"
+    t.string "category"
     t.decimal "balance"
-    t.date "open_date"
     t.date "closed_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "account_number"
   end
 
   create_table "loans", force: :cascade do |t|
     t.integer "online_banking_account_id"
-    t.string "type"
+    t.string "category"
     t.decimal "intrest_rate"
     t.date "due_date"
     t.decimal "monthly_charge"
     t.decimal "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "closed_date"
   end
 
   create_table "online_banking_accounts", force: :cascade do |t|

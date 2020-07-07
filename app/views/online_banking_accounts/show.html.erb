@@ -1,0 +1,19 @@
+<h2><%= @online_banking_account.bank.name %></h2>
+<h3>Accounts: </h3>
+<ul>
+  <li>
+    <% if @checking %>
+      <p>do some stuff for checking</p>
+    <% else %>
+      <%= link_to "Open A Checking Account", new_checking_path(@online_banking_account.user,@online_banking_account)%>
+    <% end %>
+  </li>
+  <li>
+    <% if @savings %>
+      <p>do some stuff for savings</p>
+    <% else %>
+      <%= link_to "Open A Savings Account", new_savings_path(@online_banking_account.user,@online_banking_account)%>
+    <% end %>
+  </li>
+</ul>
+<h3>Loans: </h3>  

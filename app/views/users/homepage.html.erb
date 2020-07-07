@@ -7,12 +7,11 @@
     <td></td>
   </tr>
 </table>
-
 <table>
   <% @user.online_banking_accounts.each do |oba| %>
     <tr>
-      <td><%= link_to oba.bank.name, oba.bank.web_address %></td>
-      <td> | savings</td>
+      <td><%= link_to oba.bank.name, user_online_banking_account_path(@user,oba)  %></td>
+      <td> | savings </td>
       <td> | checking</td>
       <td> | loan</td>
       <td> | <%=link_to %></td>
