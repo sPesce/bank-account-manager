@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   'online_banking_accounts#new_checking_account', as: "new_checking"
   
   post '/users/:id/online_banking_accounts/:bank_account_id/open_checking_account' =>
-   'online_banking_accounts#open_checking_account'
+   'online_banking_accounts#open_checking_account', as: "open_checking_account"
   
   get '/users/:id/online_banking_accounts/:bank_account_id/open_savings_account' =>
    'online_banking_accounts#new_savings_account', as: "new_savings"
   
   post '/users/:id/online_banking_accounts/:bank_account_id/open_savings_account' =>
-   'online_banking_accounts#open_savings_account'
+   'online_banking_accounts#open_savings_account', as: "open_savings_account"
 
   get '/signup' => 'users#new'
   post '/signup'=> 'users#create'

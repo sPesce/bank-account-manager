@@ -1,0 +1,10 @@
+<%= form_tag open_savings_account_path(@oba.user.id,@oba.id) do %>
+  <%# attributes added to params for creating the DepositAccount record %>
+  <%=hidden_field_tag 'deposit_account[online_banking_account_id]', @oba.id %>
+  <%=hidden_field_tag 'deposit_account[category]', "savings" %>
+  <%# user input %>
+  <label>Starting Balance</label>
+  <%= text_field_tag "deposit_account[balance]" %>
+  <%= submit_tag "Open Account" %>
+
+<% end %>
