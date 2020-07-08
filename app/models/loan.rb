@@ -1,5 +1,7 @@
 class Loan < ApplicationRecord
   belongs_to :online_banking_account
+  before_create :transfer_to_checking
+  
 
   def monthly_charge
     ((self.intrest_rate + 1) * self.amount) / self.maturity_months
@@ -13,5 +15,12 @@ class Loan < ApplicationRecord
   #(maturity/12)/(100) = maturity/1200
   def interest_rate
     self.maturity_months/1200.0
+  end
+
+  def transfer_to_checking
+    checking = self.online_banking_account.deposit_accounts.find_by(category: "checking")
+    checking.balance += self.amount
+    checking.save
+    self.balance = 0 - self.amount
   end
 end

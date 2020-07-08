@@ -2,12 +2,13 @@ class OnlineBankingAccountsController < ApplicationController
   
 
   before_action :set_oba, only: [:show,:new_checking_account,:new_savings_account,:new_loan,:create_loan]
-  def new    
+  def new      
     @oba = OnlineBankingAccount.new
+    
   end
   def create#refactor oba creation
-    new_account = OnlineBankingAccount.new(user_id: session[:id],bank_id: oba_params[:bank_id],username: oba_params[:username])
-    if new_account.save
+    @oba = OnlineBankingAccount.new(user_id: session[:id],bank_id: oba_params[:bank_id],username: oba_params[:username])
+    if @oba.save
       redirect_to home_path(session[:id])
     else
       render :new
