@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_185322) do
+ActiveRecord::Schema.define(version: 2020_07_08_200310) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -33,13 +33,12 @@ ActiveRecord::Schema.define(version: 2020_07_08_185322) do
   create_table "loans", force: :cascade do |t|
     t.integer "online_banking_account_id"
     t.string "category"
-    t.decimal "intrest_rate"
     t.decimal "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "closed_date"
     t.decimal "amount"
-    t.time "maturity_date"
+    t.integer "maturity_months"
   end
 
   create_table "online_banking_accounts", force: :cascade do |t|

@@ -28,11 +28,14 @@ class OnlineBankingAccountsController < ApplicationController
   end
   def new_checking_account        
   end
-  def new_savings_account        
+  def new_savings_account
   end
   def new_loan
+    @loan = Loan.new
   end
   def create_loan
+    @oba.loans.build(loan_params).save
+    redirect_to user_online_banking_account_path(session[:id],params[:online_banking_account_id])
   end
   private
   #params for online banking account object
@@ -42,6 +45,10 @@ class OnlineBankingAccountsController < ApplicationController
   #params for deposit account object
   def deposit_account_params
     params.require(:deposit_account).permit(:online_banking_account_id, :category, :balance)
+  end
+  #params for loan object
+  def loan_params
+    params.require(:loan).permit(:category,:amount,:maturity_months)
   end
 
   #set online banking account

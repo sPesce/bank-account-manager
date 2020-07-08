@@ -17,10 +17,10 @@ Rails.application.routes.draw do
    'online_banking_accounts#open_savings_account', as: "open_savings_account"
   #loans
    get '/users/:user_id/online_banking_accounts/:online_banking_account_id/apply_loan' =>
-   'online_banking_accounts#new_savings_account', as: "new_loan"
+   'online_banking_accounts#new_loan', as: "new_loan"
   
   post '/users/:user_id/online_banking_accounts/:online_banking_account_id/apply_loan' =>
-   'online_banking_accounts#open_savings_account', as: "create_loan"
+   'online_banking_accounts#create_loan', as: "create_loan"
 
   get '/signup' => 'users#new'
   post '/signup'=> 'users#create'

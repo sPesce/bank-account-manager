@@ -1,10 +1,11 @@
-<%= form_tag create_loan_path(@oba.user.id,@oba.id) do %>
-  <%# attributes added to params for creating the DepositAccount record %>
-  <%=hidden_field_tag 'loan[online_banking_account_id]', @oba.id %>
-  <%=hidden_field_tag 'deposit_account[category]', "checking" %>
-  <%# user input %>
-  <label>Starting Balance</label>
-  <%= text_field_tag "deposit_account[balance]" %>
-  <%= submit_tag "Open Account" %>
-
+<%= form_for @loan, url: create_loan_path(session[:id],@oba.id) do |f| %>
+  <%= f.select(:category,%w(Auto School House Personal)) %>
+  
+  <%= f.label :amount, "Amount"%>
+  <%= f.text_field :amount %>
+  
+  <%= f.label "Loan Length (in months)"%>
+  <%= f.select(:maturity_months,[12,24,36,48,120]) %>
+  <%= f.submit %>
 <% end %>
+<h1>test</h1>

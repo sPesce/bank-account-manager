@@ -4,11 +4,14 @@ class Loan < ApplicationRecord
   def monthly_charge
     ((self.intrest_rate + 1) * self.amount) / self.maturity_months
   end
-  
-  def maturity_months
-    (self.maturity_date.year * 12 + self.maturity_date.month) - (self.created_at.year * 12 + self.created_at.month)
-  end
-  
-  
 
+  def maturity_date
+    self.created_at + self.maturity_months.months
+  end
+
+  #interest rate is 1% for every 12 months
+  #(maturity/12)/(100) = maturity/1200
+  def interest_rate
+    self.maturity_months/1200.0
+  end
 end
