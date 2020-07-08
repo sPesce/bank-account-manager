@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_165719) do
+ActiveRecord::Schema.define(version: 2020_07_08_185322) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_165719) do
     t.integer "online_banking_account_id"
     t.string "category"
     t.decimal "intrest_rate"
-    t.date "due_date"
-    t.decimal "monthly_charge"
     t.decimal "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
