@@ -28,15 +28,12 @@ create_banks
     
 User.create(first_name: "Steve", username: "SP101", password: "mememe")
 
+# def not_used
+#   ac = OnlineBankingAccount.new(username: 'Issa', password: 'abcdef')
+#   ac.bank = Bank.first
+#   ac.user = User.first
+#   ac.save
 
-
-
-def not_used
-  ac = OnlineBankingAccount.new(username: 'Issa', password: 'abcdef')
-  ac.bank = Bank.first
-  ac.user = User.first
-  ac.save
-
-  Loan.create(balance: 100.5, online_banking_account_id: ac.id)
-  DepositAccount.create(balance: 300.5, online_banking_account_id: ac.id)
-end
+#   Loan.create(balance: 100.5, online_banking_account_id: ac.id)
+#   DepositAccount.create(balance: 300.5, online_banking_account_id: ac.id)
+# end

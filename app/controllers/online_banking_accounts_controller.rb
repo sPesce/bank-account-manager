@@ -1,8 +1,7 @@
 class OnlineBankingAccountsController < ApplicationController
   
-  TODO: FIX PARAMS SWITCHING
-      : REMOVE DEBUG(PARAMS) FROM LAYOUT
-  before_action :set_oba, only: [:show,:new_checking_account,:new_savings_account]
+
+  before_action :set_oba, only: [:show,:new_checking_account,:new_savings_account,:new_loan,:create_loan]
   def new    
     @oba = OnlineBankingAccount.new
   end
@@ -21,17 +20,20 @@ class OnlineBankingAccountsController < ApplicationController
     @loans = @oba.loans
   end
   #create savings account for this online banking acount
-  def open_savings_account    
-    DepositAccount.create(deposit_account_params)     
-    redirect_to user_online_banking_account_path(session[:id],params[:id])  
+  def open_savings_account  
+    open_deposit_account(deposit_account_params)
   end
-  def new_checking_account    
+  def open_checking_account
+    open_deposit_account(deposit_account_params)
+  end
+  def new_checking_account        
   end
   def new_savings_account        
   end
-  # def destroy
-
-  # end
+  def new_loan
+  end
+  def create_loan
+  end
   private
   #params for online banking account object
   def oba_params
@@ -44,10 +46,15 @@ class OnlineBankingAccountsController < ApplicationController
 
   #set online banking account
   #debugged_params temporary fix to params[:id] switching between oba id and user id
-  def set_oba    
-    params[:user_id] ? debugged_params = params[:id] : debugged_params = params[:bank_account_id]
-    @oba = OnlineBankingAccount.find(debugged_params)
+  def set_oba
+    if params[:online_banking_account_id]
+      @oba = OnlineBankingAccount.find(params[:online_banking_account_id])
+    else
+      @oba = OnlineBankingAccount.find(params[:id])
+    end
   end
-
-
+  def open_deposit_account(parameters)
+    DepositAccount.create(parameters)     
+    redirect_to user_online_banking_account_path(session[:id],params[:online_banking_account_id])
+  end
 end
