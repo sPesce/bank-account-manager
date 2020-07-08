@@ -6,11 +6,11 @@
     <% if acct %>
       <li><%=acct.category.upcase%>
         <ul>
+          <li>Status: <%=acct.status%></li>
           <li>Account Number: <%=acct.account_number%></li>
           <li>Routing Number: <%=acct.routing_number%></li>
           <li>Balance: <%=acct.balance_to_s%></li>
           <li>Opened On: <%=acct.created_at%></li>
-          <li>Status: <%=%></li>
         </ul>
       </li>
 
@@ -53,6 +53,7 @@
       </li>
     <%end%>
   <% end %>
+  
   <li><%= link_to "Apply For a New Loan", new_loan_path(session[:id],@oba)%></li>
 </ul>
  
