@@ -8,9 +8,9 @@
         <ul>
           <li>Account Number: <%=acct.account_number%></li>
           <li>Routing Number: <%=acct.routing_number%></li>
-          <li>Balance: $<%=acct.balance%></li>
-          <li><%=%></li>
-          <li><%=%></li>
+          <li>Balance: <%=acct.balance_to_s%></li>
+          <li>Opened On: <%=acct.created_at%></li>
+          <li>Status: <%=%></li>
         </ul>
       </li>
 
