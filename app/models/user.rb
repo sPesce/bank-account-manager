@@ -4,12 +4,17 @@ class User < ApplicationRecord
   has_many :loans, through: :online_banking_accounts
   has_many :banks, through: :online_banking_accounts
 
+  validates :first_name, :last_name, :username, presence: true
+  validates :username, uniqueness: true
+  validates :username, format: { without: /\s/, message: "must contain no spaces" }
+  validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+
   # #validation todo
   # -user
-  # ~username should start with a letter
-  # username should be string with no spaces and distinct
-  # is not taken
-  # first name / last name - only letters
+  # ~username should start with a letter => ok
+  # username should be string with no spaces and distinct => ok
+  # is not taken => ok
+  # first name / last name - only letters => ok
 
   # -deposit_accounts and loans
   # balance should start at amount

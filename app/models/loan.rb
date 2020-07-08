@@ -7,7 +7,7 @@ class Loan < ApplicationRecord
     (self.maturity_date.year * 12 + self.maturity_date.month) - (self.created_at.year * 12 + self.created_at.month)
   end
   def set_monthtly_payment    
-    self.monthly_payment = (1+self.intrest_rate)*self.amount)/maturity_months
+    self.monthly_payment = (1+self.intrest_rate)*(self.amount)/maturity_months
   end
 
 end

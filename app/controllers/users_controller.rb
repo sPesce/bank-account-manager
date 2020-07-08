@@ -5,13 +5,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    new_user = User.new(user_params)
-    if (new_user.save)
-      session[:id] = new_user.id
-      redirect_to home_path(new_user.id)
+    @user = User.new(user_params)
+    @user.save
+    if (@user.save) && (@user.valid?)
+      session[:id] = @user.id
+      redirect_to home_path(@user.id)
     else
       render :new
     end
+
+    # new_user = User.new(user_params)
+    # new_user.save
+    # if (new_user.save) && (new_user.valid?)
+    #   session[:id] = new_user.id
+    #   redirect_to home_path(new_user.id)
+    # else
+    #   render :new
+    # end
   end
 
   def homepage
