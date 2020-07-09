@@ -3,11 +3,11 @@ class OnlineBankingAccountsController < ApplicationController
   #TODO: make login functionality & validate that user has checking account before making loan
   #TODO: make way for user to pay their loan
 
-  
+
   before_action :set_oba, only: [:show,:new_checking_account,:new_savings_account,:new_loan,:create_loan]
-  def new      
-    @oba = OnlineBankingAccount.new
-    
+  def new
+    set_user    
+    @oba = OnlineBankingAccount.new    
   end
   def create#refactor oba creation
     
@@ -71,6 +71,14 @@ class OnlineBankingAccountsController < ApplicationController
       @oba = OnlineBankingAccount.find(params[:id])
     end
   end
+  def set_user
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    else
+      @user = User.find(params[:id])
+    end
+  end
+
   def open_deposit_account(parameters)
     DepositAccount.create(parameters)     
     redirect_to user_online_banking_account_path(session[:id],params[:online_banking_account_id])
