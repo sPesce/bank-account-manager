@@ -11,23 +11,17 @@ class User < ApplicationRecord
   validates :username, format: { without: /\s/, message: "must contain no spaces" }
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
 
-  # #validation todo
-  # -user
-  # ~username should start with a letter => ok
-  # username should be string with no spaces and distinct => ok
-  # is not taken => ok
-  # first name / last name - only letters => ok
-
-  # -deposit_accounts and loans
-  # balance should start at amount
-  # amount should be positive number
-
-  # -bank
-  # name should be distinct
   
-  # online_banking_accounts
-  # ~username should start with a letter => ok
-  # username should be string with no spaces and distinct => ok
+  # total balance of all the accounts 
+
+  def account_balance
+    loan_balance = self.loans.select do |loan|
+      loan.balance
+    end.sum
+
+    deposit_balance = self.deposit_accounts.select do |deposit|
+      deposit.balance
+    end.sum
 
   #maybe add this:
   # --renenber to use the intrest rate (intrest rate only applies to whats being paid back)
@@ -47,4 +41,9 @@ class User < ApplicationRecord
   def savings_account
     self.deposit_accounts.where("category = ?", "savings").first
   end
+    total_balance = loan_balance + deposit_balance
+    total_balance
+  end
+  
+  
 end
