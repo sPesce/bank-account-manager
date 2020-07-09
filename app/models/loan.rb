@@ -2,6 +2,7 @@ class Loan < ApplicationRecord
   belongs_to :online_banking_account
   before_create :transfer_to_checking
   
+  #validation make sure there is a checking account
 
   def monthly_charge
     ((self.intrest_rate + 1) * self.amount) / self.maturity_months
