@@ -1,6 +1,7 @@
 class Loan < ApplicationRecord
   belongs_to :online_banking_account
   before_create :transfer_to_checking
+  include AccountModule
   
   #validation make sure there is a checking account
 
@@ -23,6 +24,5 @@ class Loan < ApplicationRecord
     checking.balance += self.amount
     checking.save
     self.balance = 0 - self.amount
-    self.save
   end
 end
