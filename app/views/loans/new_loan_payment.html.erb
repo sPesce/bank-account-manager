@@ -1,0 +1,6 @@
+
+<%= form_tag create_loan_payment_path(session[:user_id],@loan) do %>
+  <label>Amount</label>
+  <%= text_field_tag "loan[payment_amount]"%>
+  <%= submit_tag "Submit Payment" %>
+<% end %>

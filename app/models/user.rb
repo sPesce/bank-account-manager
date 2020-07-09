@@ -38,6 +38,13 @@ class User < ApplicationRecord
   #  ...so that loan account is the account that the loan is paid back to
   #   and checking account is where the loan money is given
   #
-  
-  
+  def total_balance
+    self.online_banking_accounts
+  end
+  def checking_account
+    self.deposit_accounts.where("category = ?", "checking").first
+  end
+  def savings_account
+    self.deposit_accounts.where("category = ?", "savings").first
+  end
 end

@@ -35,8 +35,12 @@
 <ul>
   <% if @loans %>
     <% @loans.each do |loan|%>
-      <li><%= loan.category %>
-        <ul>
+      <li><%= loan.category %>        
+          <li>Status: <%=loan.status%></li>
+          <%= %>
+          <% if loan.status.downcase == "closed" %>
+            <li>Closed Date: <%=loan.closed_date %></li>
+          <% end %>
           <li>Amount: <%=loan.amount%></li>
           <li>Term Length: <%=loan.maturity_months%> months</li>
           <li>Interest Rate: <%=loan.interest_rate %>%</li>

@@ -23,6 +23,6 @@ class Loan < ApplicationRecord
     checking = self.online_banking_account.deposit_accounts.find_by(category: "checking")
     checking.balance += self.amount
     checking.save
-    self.balance = 0 - self.amount
+    self.balance = 0 - ((1 + self.interest_rate) * self.amount) 
   end
 end
