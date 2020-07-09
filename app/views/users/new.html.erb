@@ -15,5 +15,7 @@
   <%= f.text_field :last_name %>
   <%= f.label :username, "username"%>
   <%= f.text_field :username %>
+  <%= f.label :password_digest, "Password"%>
+  <%= f.password_field :password_digest %>
   <%= f.submit "Signup" %>
 <% end %>
