@@ -1,0 +1,9 @@
+<h2>Bank Account Manager Login</h2><br>
+
+<%= form_for @user, url: '/', controller: "sessions", action: "create" do |f|%>
+  <%= f.label :username, "Username" %>
+  <%= f.text_field :username %>
+  <%= f.label :password_digest, "Password" %>
+  <%= f.password_field :password_digest %>
+  <%= f.submit "Login" %>
+<%end%>
