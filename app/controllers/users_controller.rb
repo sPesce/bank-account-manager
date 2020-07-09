@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     # new_user = User.new(user_params)
     # new_user.save
     # if (new_user.save) && (new_user.valid?)
-    #   session[:id] = new_user.id
+    #   session[:user_id] = new_user.id
     #   redirect_to home_path(new_user.id)
     # else
     #   render :new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def homepage
-    @user = User.find(session[:id])  
+    @user = User.find(session[:user_id])  
   end
   
   private

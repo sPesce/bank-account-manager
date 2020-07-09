@@ -23,5 +23,6 @@ class Loan < ApplicationRecord
     checking.balance += self.amount
     checking.save
     self.balance = 0 - self.amount
+    self.save
   end
 end

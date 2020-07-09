@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
   def current_user
-    session[:id]
+    session[:user_id]
   end
 end

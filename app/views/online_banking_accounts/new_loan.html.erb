@@ -1,4 +1,4 @@
-<%= form_for @loan, url: create_loan_path(session[:id],@oba.id) do |f| %>
+<%= form_for @loan, url: create_loan_path(session[:user_id],@oba.id) do |f| %>
   <%= f.select(:category,%w(Auto School House Personal)) %>
   
   <%= f.label :amount, "Amount"%>
