@@ -17,9 +17,12 @@ class OnlineBankingAccountsController < ApplicationController
     end   
   end
   def show
-    #load each sub-account for current OnlineBankingAccount
-    @checking = @oba.deposit_accounts.find_by(category: "checking")
-    @savings = @oba.deposit_accounts.find_by(category: "savings")
+    #load each sub-account for current OnlineBankingAccount   
+    checking = @oba.deposit_accounts.find_by(category: "checking")
+    savings = @oba.deposit_accounts.find_by(category: "savings")
+    @accounts = []
+    @accounts << checking if !!checking
+    @accounts <<savings if !!savings    
     @loans = @oba.loans
   end
   #create savings account for this online banking acount
@@ -56,8 +59,12 @@ class OnlineBankingAccountsController < ApplicationController
 
   #set online banking account
   #debugged_params temporary fix to params[:id] switching between oba id and user id
-  def set_oba   
-    @oba = OnlineBankingAccount.find_by(user_id: session[:user_id])
+  def set_oba
+    if params[:online_banking_account_id]
+      @oba = OnlineBankingAccount.find(params[:online_banking_account_id])
+    else
+      @oba = OnlineBankingAccount.find(params[:id])
+    end
   end
   def set_user
     if params[:user_id]
