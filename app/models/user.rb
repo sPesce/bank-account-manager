@@ -14,14 +14,6 @@ class User < ApplicationRecord
   
   # total balance of all the accounts 
 
-  def account_balance
-    loan_balance = self.loans.select do |loan|
-      loan.balance
-    end.sum
-
-    deposit_balance = self.deposit_accounts.select do |deposit|
-      deposit.balance
-    end.sum
 
   #maybe add this:
   # --renenber to use the intrest rate (intrest rate only applies to whats being paid back)
@@ -33,7 +25,7 @@ class User < ApplicationRecord
   #   and checking account is where the loan money is given
   #
   def total_balance
-    self.online_banking_accounts
+    self.online_banking_accounts.map{|oba|oba.total_balance}.sum
   end
   def checking_account
     self.deposit_accounts.where("category = ?", "checking").first
@@ -41,9 +33,5 @@ class User < ApplicationRecord
   def savings_account
     self.deposit_accounts.where("category = ?", "savings").first
   end
-    total_balance = loan_balance + deposit_balance
-    total_balance
-  end
-  
   
 end
