@@ -6,6 +6,8 @@ module AccountModule
       #decimal doesnt always come back with two decimal places
       cents[1] ? string += cents[0..1] : string += cents[0] + "0"    
     end
+    
+
     #open?closed?  uses closed date
     def status
       self.closed_date == nil ? "Open" : "Closed"

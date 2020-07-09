@@ -6,12 +6,8 @@ class Bank < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  def self.user_has_none(user)
-    used_banks_ids = OnlineBankingAccount.where("user_id = ?",user.id).pluck(:bank_ids)
-    self.class.all.pluck(:id).map do |id|
-      if !used_bank_ids.include? id
-        Self.find(id)
-      end
-    end
+  def self.user_has_none(user_id)
+    used_bank_ids = OnlineBankingAccount.where("user_id = ?",user_id).pluck(:bank_id)
+    Bank.where.not(id: used_bank_ids)
   end
 end
