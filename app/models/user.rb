@@ -11,33 +11,8 @@ class User < ApplicationRecord
   validates :username, format: { without: /\s/, message: "must contain no spaces" }
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
 
-  # #validation todo
-  # -user
-  # ~username should start with a letter => ok
-  # username should be string with no spaces and distinct => ok
-  # is not taken => ok
-  # first name / last name - only letters => ok
-
-  # -deposit_accounts and loans
-  # balance should start at amount
-  # amount should be positive number
-
-  # -bank
-  # name should be distinct
   
-  # online_banking_accounts
-  # ~username should start with a letter => ok
-  # username should be string with no spaces and distinct => ok
-
-  #maybe add this:
-  # --renenber to use the intrest rate (intrest rate only applies to whats being paid back)
-  # --    ...it does not apply to the amount given into the checking
-  #loan requires a checking account
-  #creating loan adds the amount to checking balance
-  #   and removes amount from loan balance
-  #  ...so that loan account is the account that the loan is paid back to
-  #   and checking account is where the loan money is given
-  #
+  # total balance of all the accounts 
   
   
 end

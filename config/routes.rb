@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   post '/users/:user_id/online_banking_accounts/:online_banking_account_id/apply_loan' =>
    'online_banking_accounts#create_loan', as: "create_loan"
 
+  #for paying off loan
+  get '/users/:user_id/loans/:loan_id' => 'loans#new_loan_payment', as: 'new_loan_payment'
+  post '/users/:user_id/loans/:loan_id' => 'loans#create_loan_payment', as: 'create_loan_payment'
+
   
   get '/signup' => 'users#new'
   post '/signup'=> 'users#create'

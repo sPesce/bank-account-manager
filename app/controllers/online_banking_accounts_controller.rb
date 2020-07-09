@@ -1,8 +1,6 @@
 class OnlineBankingAccountsController < ApplicationController
- 
-  #TODO: make login functionality & validate that user has checking account before making loan
+   
   #TODO: make way for user to pay their loan
-
 
   before_action :set_oba, only: [:show,:new_checking_account,:new_savings_account,:new_loan,:create_loan]
   def new
@@ -11,18 +9,12 @@ class OnlineBankingAccountsController < ApplicationController
   end
   def create#refactor oba creation
     
-    @oba = OnlineBankingAccount.new(user_id: session[:id],bank_id: oba_params[:bank_id],username: oba_params[:username])
+    @oba = OnlineBankingAccount.new(user_id: session[:user_id],bank_id: oba_params[:bank_id],username: oba_params[:username])
     if @oba.save && @oba.valid?
-      redirect_to home_path(session[:id])
+      redirect_to home_path(session[:user_id])
     else
       render :new
-    end
-    # new_account = OnlineBankingAccount.new(user_id: session[:id],bank_id: oba_params[:bank_id],username: oba_params[:username])
-    # if new_account.save
-    #   redirect_to home_path(session[:id])
-    # else
-    #   render :new
-    # end
+    end   
   end
   def show
     #load each sub-account for current OnlineBankingAccount
@@ -46,7 +38,7 @@ class OnlineBankingAccountsController < ApplicationController
   end
   def create_loan
     @oba.loans.build(loan_params).save
-    redirect_to user_online_banking_account_path(session[:id],params[:online_banking_account_id])
+    redirect_to user_online_banking_account_path(session[:user_id],params[:online_banking_account_id])
   end
   private
   #params for online banking account object
@@ -64,12 +56,8 @@ class OnlineBankingAccountsController < ApplicationController
 
   #set online banking account
   #debugged_params temporary fix to params[:id] switching between oba id and user id
-  def set_oba
-    if params[:online_banking_account_id]
-      @oba = OnlineBankingAccount.find(params[:online_banking_account_id])
-    else
-      @oba = OnlineBankingAccount.find(params[:id])
-    end
+  def set_oba   
+    @oba = OnlineBankingAccount.find_by(user_id: session[:user_id])
   end
   def set_user
     if params[:user_id]
@@ -81,6 +69,6 @@ class OnlineBankingAccountsController < ApplicationController
 
   def open_deposit_account(parameters)
     DepositAccount.create(parameters)     
-    redirect_to user_online_banking_account_path(session[:id],params[:online_banking_account_id])
+    redirect_to user_online_banking_account_path(session[:user_id],params[:online_banking_account_id])
   end
 end

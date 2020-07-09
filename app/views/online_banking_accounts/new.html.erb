@@ -10,7 +10,7 @@
 <% end %>  
 </ul>
 
-<%= form_for @oba, url: user_online_banking_accounts_path(session[:id]) do |f| %>
+<%= form_for @oba, url: user_online_banking_accounts_path(session[:user_id]) do |f| %>
   <%# banks are already created in seed file, select a bank %>
   <%= f.collection_select(:bank_id, Bank.user_has_none(@user.id), :id, :name)%>
   <%= f.label :username, "Username" %>
