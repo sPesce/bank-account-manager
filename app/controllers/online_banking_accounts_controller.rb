@@ -1,7 +1,9 @@
 class OnlineBankingAccountsController < ApplicationController
-  Delete Me
-  TODO: make login functionality & validate that user has checking account before making loan
-  TODO: make way for user to pay their loan
+ 
+  #TODO: make login functionality & validate that user has checking account before making loan
+  #TODO: make way for user to pay their loan
+
+  
   before_action :set_oba, only: [:show,:new_checking_account,:new_savings_account,:new_loan,:create_loan]
   def new      
     @oba = OnlineBankingAccount.new
