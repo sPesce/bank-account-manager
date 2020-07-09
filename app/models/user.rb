@@ -13,6 +13,19 @@ class User < ApplicationRecord
 
   
   # total balance of all the accounts 
+
+  def account_balance
+    loan_balance = self.loans.select do |loan|
+      loan.balance
+    end.sum
+
+    deposit_balance = self.deposit_accounts.select do |deposit|
+      deposit.balance
+    end.sum
+
+    total_balance = loan_balance + deposit_balance
+    total_balance
+  end
   
   
 end

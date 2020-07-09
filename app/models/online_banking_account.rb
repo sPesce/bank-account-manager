@@ -13,10 +13,8 @@ class OnlineBankingAccount < ApplicationRecord
     loan_sum = Loan.where(online_banking_account_id: self.id).pluck(:balance).sum
     total_sum = deposit_sum + loan_sum
     total_sum
-    #loan sum
-    #total sum 
+    
   end
 end
 
 
-# Loan.where(online_banking_account_id: 30).pluck(:balance).sum
