@@ -1,5 +1,15 @@
 <%# User provides username and bank name to connect to online bank account %>
 <%# in our app, this is really just creating dummy data that represent the real world application %>
+<% if @oba.errors %>
+<ul>
+<% @oba.errors.full_messages.each do |message| %>
+  <li>
+  <%= message %><br>
+  </li>
+  <% end %>
+<% end %>  
+</ul>
+
 <%= form_for @oba, url: user_online_banking_accounts_path(session[:id]) do |f| %>
   <%# banks are already created in seed file, select a bank %>
   <%= f.collection_select(:bank_id, Bank.all, :id, :name)%>
