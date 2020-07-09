@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   post '/users/:user_id/online_banking_accounts/:online_banking_account_id/apply_loan' =>
    'online_banking_accounts#create_loan', as: "create_loan"
 
+  
   get '/signup' => 'users#new'
   post '/signup'=> 'users#create'
   get '/users/:id/home' => 'users#homepage', as: "home"
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
+  get '' => 'sessions#new'
+  post '' => 'sessions#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 

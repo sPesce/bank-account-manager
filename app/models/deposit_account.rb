@@ -1,7 +1,7 @@
 class DepositAccount < ApplicationRecord
   before_create :generate_account_number
   belongs_to :online_banking_account
-  
+  include AccountModule
   #extracted from bank, since DA belongs to OBA, which belongs to Bank 
   def routing_number
     self.online_banking_account.bank.routing_number
@@ -9,7 +9,11 @@ class DepositAccount < ApplicationRecord
   def open_date
     self.created_at
   end
-  private
+
+  def test
+    self.status
+  end
+  
   #set account number before creation
   #TODO: Validate that it hasnt been used
   def generate_account_number

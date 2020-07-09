@@ -6,5 +6,5 @@ class OnlineBankingAccount < ApplicationRecord
 
   validates :username, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :username, format: { without: /\s/, message: "must contain no spaces" }
-  
+    
 end
