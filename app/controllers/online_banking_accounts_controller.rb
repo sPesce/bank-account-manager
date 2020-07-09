@@ -10,12 +10,19 @@ class OnlineBankingAccountsController < ApplicationController
     
   end
   def create#refactor oba creation
+    
     @oba = OnlineBankingAccount.new(user_id: session[:id],bank_id: oba_params[:bank_id],username: oba_params[:username])
-    if @oba.save
+    if @oba.save && @oba.valid?
       redirect_to home_path(session[:id])
     else
       render :new
     end
+    # new_account = OnlineBankingAccount.new(user_id: session[:id],bank_id: oba_params[:bank_id],username: oba_params[:username])
+    # if new_account.save
+    #   redirect_to home_path(session[:id])
+    # else
+    #   render :new
+    # end
   end
   def show
     #load each sub-account for current OnlineBankingAccount

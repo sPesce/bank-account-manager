@@ -24,8 +24,8 @@ class User < ApplicationRecord
   # name should be distinct
   
   # online_banking_accounts
-  # ~username should start with a letter
-  # username should be string with no spaces and distinct
+  # ~username should start with a letter => ok
+  # username should be string with no spaces and distinct => ok
 
   #maybe add this:
   # --renenber to use the intrest rate (intrest rate only applies to whats being paid back)
