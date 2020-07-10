@@ -1,11 +1,15 @@
 <%= link_to "Add Banking Account", new_user_online_banking_account_path(@user.id) %>
 <h1>Connected Online Bank Accounts: </h1>
 <table>
+<tr>
+  <th>Bank</th>
+  <th>Balance</th>
+</tr>
   <% if @user.online_banking_accounts %>
   <% @user.online_banking_accounts.each do |oba| %>    
     <tr>
       <td><%= link_to oba.bank.name, user_online_banking_account_path(@user,oba)  %></td>
-      <td>Balance:<%= oba.total_balance%></td>
+      <td><%= oba.total_balance%></td>
       <td> </td>      
     </tr>
   <% end %>

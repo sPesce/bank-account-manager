@@ -10,6 +10,8 @@ class LoansController < ApplicationController
     if payment <= users_checking.balance
       loan.balance += payment
       users_checking.balance -= payment
+      flash[:message] = "Paid #{payment} from checking to loan account"      
+      redirect_to user_online_banking_account_path(session[:id],loan.online_banking_account.id)
     else
       flash[:error] = "You do not have enough money in your checking account to make this transaction"
       redirect_to :new_loan_payment

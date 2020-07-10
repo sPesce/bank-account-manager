@@ -1,5 +1,7 @@
+
 <%# oba: OnlineBankingAccount %>
 <h2><%= @oba.bank.name %></h2>
+<h4><%=flash[:message] if flash[:message]%></h4>
 <h3>Accounts: </h3>
 <ul>
   <% @accounts.each do |acct|%>
@@ -45,9 +47,10 @@
   </ul>
 <% end %>
   <% if @accounts[0] %>  
-    <h3><%= link_to "Apply For a New Loan", new_loan_path(session[:user_id],@oba)%></h3>
+    <%= link_to "Apply For a New Loan", new_loan_path(session[:user_id],@oba)%>
   <% else %>
     <h3>Open a checking account to become eligible to apply for a loan.</h3>
   <% end %>
+<%= link_to "Back to all Accounts", home_path(session[:user_id])%>
  
   

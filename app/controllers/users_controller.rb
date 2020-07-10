@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def homepage
+   
     @user = User.find(session[:user_id])  
   end
   
