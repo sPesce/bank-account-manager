@@ -48,7 +48,7 @@
     <%end%>   
   </ul>
 <% end %>
-  <% if @checking %>  
+  <% if @accounts[0] %>  
     <h3><%= link_to "Apply For a New Loan", new_loan_path(session[:user_id],@oba)%></h3>
   <% else %>
     <h3>Open a checking account to become eligible to apply for a loan.</h3>
