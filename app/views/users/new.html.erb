@@ -1,5 +1,4 @@
 <h2>Signup Page</h2>
-
 <% if @user.errors %>
 <ul>
 <% @user.errors.full_messages.each do |message| %>
@@ -11,11 +10,15 @@
 <%= form_for @user, url: '/signup', controller: 'users', action: 'create' do |f| %>
   <%= f.label :first_name, "First Name"%>
   <%= f.text_field :first_name %>
+  <br>
   <%= f.label :last_name, "Last Name"%>
   <%= f.text_field :last_name %>
+  <br>
   <%= f.label :username, "username"%>
   <%= f.text_field :username %>
+  <br>
   <%= f.label :password_digest, "Password"%>
   <%= f.password_field :password_digest %>
+  <br>
   <%= f.submit "Signup" %>
 <% end %>

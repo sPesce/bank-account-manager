@@ -1,4 +1,4 @@
-module AccountModule
+module AccountModule   
     #print balance in the form $xxxx.xx
     def balance_to_s
       dollars,cents = self.balance.to_s.split('.')

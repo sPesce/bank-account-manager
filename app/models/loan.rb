@@ -6,7 +6,11 @@ class Loan < ApplicationRecord
   #validation make sure there is a checking account
 
   def monthly_charge
-    ((self.intrest_rate + 1) * self.amount) / self.maturity_months
+    charge_string = (((self.interest_rate + 1) * self.amount) / self.maturity_months).to_s
+    dollars,cents = charge_string.split('.')
+    cents = cents.chars
+    #add dollars . and cents, add extra zero if none
+    ((dollars + '.') + ( cents[1] ? (cents[0] + cents[1]) : cents[0] + '0'))    
   end
 
   def maturity_date
@@ -25,4 +29,5 @@ class Loan < ApplicationRecord
     checking.save
     self.balance = 0 - ((1 + self.interest_rate) * self.amount) 
   end
+  
 end

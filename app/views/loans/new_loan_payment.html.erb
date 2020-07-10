@@ -1,6 +1,21 @@
 
+<h2>Pay Loan</h2>
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+<table>
+  <tr>
+    <th>Checking Balance</th>  
+    <th>Loan Balance</th>
+  </tr>
+  <tr>
+    <td><%=@checking.balance_to_s%></td>
+    <td><%=@loan.balance_to_s%></td>
+  </tr>
+</table>
 <%= form_tag create_loan_payment_path(session[:user_id],@loan) do %>
-  <label>Amount</label>
-  <%= text_field_tag "loan[payment_amount]"%>
+  <label>Amount, Default: Monthly Charge</label>
+  <%= text_field_tag( "loan[payment_amount]", nil, placeholder: "Monthly Charge: $#{@loan.monthly_charge}")%>
   <%= submit_tag "Submit Payment" %>
 <% end %>
+

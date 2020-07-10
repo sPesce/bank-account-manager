@@ -15,6 +15,9 @@ class OnlineBankingAccount < ApplicationRecord
     total_sum
     
   end
+  def checking
+    self.deposit_accounts.find_by(category: 'checking')
+  end
 end
 
 

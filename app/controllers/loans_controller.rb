@@ -1,6 +1,7 @@
 class LoansController < ApplicationController
   def new_loan_payment
-    @loan = params[:loan_id]
+    @loan = Loan.find(params[:loan_id])
+    @checking = @loan.online_banking_account.checking
   end
   def create_loan_payment
     loan = Loan.find(params[:loan_id])
@@ -10,13 +11,15 @@ class LoansController < ApplicationController
       loan.balance += payment
       users_checking.balance -= payment
     else
-      #
+      flash[:error] = "You do not have enough money in your checking account to make this transaction"
+      redirect_to :new_loan_payment
     end
     if loan.balance >= 0.0        
       users_checking.balance += loan.balance
       loan.balance = 0.0
       loan.closed_date = DateTime.now
     end
+    #save each account
     [loan,users_checking].each{|o|o.save}  
   end
   private
