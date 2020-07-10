@@ -5,11 +5,12 @@
   <% @user.online_banking_accounts.each do |oba| %>    
     <tr>
       <td><%= link_to oba.bank.name, user_online_banking_account_path(@user,oba)  %></td>
-      <td> | Total Balance : <%= oba.total_balance %></td>
-      <td> | Checking </td>
-      <td> | loan</td>      
+      <td>Balance:<%= oba.total_balance%></td>
+      <td> </td>      
     </tr>
   <% end %>
   <% end %>
 </table>
+
+  <h4> Total Balance : <%= @user.total_balance %></h4>
 
