@@ -16,16 +16,12 @@
 </ul>
 
 <ul>
-  <li>    
     <% if !@accounts[0] %>   
-       <%= link_to "Open A Checking Account", new_checking_path(@oba.user,@oba)%>
+     <li><%= link_to "Open A Checking Account", new_checking_path(@oba.user,@oba)%></li>
     <% end %>
-  </li>
-  <li>   
     <% if !@accounts[1] %>      
-       <%= link_to "Open A Savings Account", new_savings_path(@oba.user,@oba)%>
+      <li>   <%= link_to "Open A Savings Account", new_savings_path(@oba.user,@oba)%></li>
     <% end %>
-  </li>
 </ul>
 
 <h3>Loans:</h3>
